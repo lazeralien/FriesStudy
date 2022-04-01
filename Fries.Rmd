@@ -19,6 +19,26 @@ What does a French fry look like at different fast food chains We measured weigh
 
 ## Methodology and Data Collection
 
+
+Fries were  collected. These were the prices and weights:
+
+- McDonald's Large Fries
+  - 6.53oz
+  - $3.68 (with tax)
+	
+- Wendy's Large Fries
+  - 6.35oz
+  - $3.13 (with tax)
+
+- Burger King Large Fries
+  - 6.42oz
+  - $3.29 (without tax)
+
+- Carl's Jr. Large Fries
+	- 5.33oz
+	- $
+	
+	
 Weight was collected on a digital kitchen scale. Weights were collected in ounces and it was determined the scale is accurate to grams. The grams are converted in the scale to ounces.
 
 How we collected data
