@@ -1,0 +1,55 @@
+---
+title: "Fries"
+author: "Brandon, Casey and Alex"
+date: '2022-04-01'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+fries <- read.csv("fries.csv")
+```
+
+## Introduction
+
+What question are we trying to answer "operationalize"
+
+What does a French fry look like at different fast food chains We measured weight, length, and both widths of fries from multiple fast food locations.
+
+## Methodology and Data Collection
+
+Weight was collected on a digital kitchen scale. Weights were collected in ounces and it was determined the scale is accurrate to grams. The grams are converted in the scale to ounces.
+
+How we collected data
+
+The steps we will take to evaluate the data
+
+## Data Analysis
+All that fancy stats stuff
+
+```{r, echo=FALSE}
+ggplot(fries) +
+  geom_density(aes(x=Length, fill=Business), alpha=0.4) +
+  labs(
+    title="Length of Fries",
+    x="Length (mm)"
+  ) +
+  theme_gray()
+
+```
+
+```{r, echo=FALSE, warning=FALSE}
+
+ggplot(fries) +
+  geom_density(aes(x=Grams, fill=Business), alpha=0.5, adjust=1.5) +
+  labs(
+    title="Weight of Fries",
+    x="Wight (grams)"
+  ) +
+  theme_gray()
+```
+
+
+
+## Conclusions
