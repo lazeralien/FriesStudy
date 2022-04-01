@@ -19,7 +19,7 @@ What does a French fry look like at different fast food chains We measured weigh
 
 ## Methodology and Data Collection
 
-Weight was collected on a digital kitchen scale. Weights were collected in ounces and it was determined the scale is accurrate to grams. The grams are converted in the scale to ounces.
+Weight was collected on a digital kitchen scale. Weights were collected in ounces and it was determined the scale is accurate to grams. The grams are converted in the scale to ounces.
 
 How we collected data
 
@@ -27,6 +27,12 @@ The steps we will take to evaluate the data
 
 ## Data Analysis
 All that fancy stats stuff
+
+If you want to get data from just one place do something like 
+
+`r justWendys <- subset(fries, Business== "Wendys")`
+
+
 
 ```{r, echo=FALSE}
 ggplot(fries) +
