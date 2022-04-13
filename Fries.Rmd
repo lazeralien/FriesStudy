@@ -68,12 +68,14 @@ ggplot(fries) +
 ```{r, echo=FALSE, warning=FALSE}
 
 ggplot(fries) +
-  geom_density(aes(x=Grams, fill=Business), alpha=0.5, adjust=1.5) +
+  geom_density(aes(x=Grams, fill=Business), alpha=0.5, adjust=1.9) +
   labs(
     title="Weight of Fries",
     x="Wight (grams)"
   ) +
   theme_gray()
+
+#adjust 1.9 smoothes the discrete values into a normal looking graph.
 ```
 
 
