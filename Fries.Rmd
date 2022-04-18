@@ -13,14 +13,15 @@ fries <- read.csv("fries.csv")
 
 ## Introduction
 
-What question are we trying to answer "operationalize"
+Originating in Belgium or France in the late 1600’s, the french-fry has been around longer than the United States. While the origination is disputed, our research team is interested in the modern-day french-fry. The french-fry’s long history has created the opportunity for a large number of variants: The waffle fry, the steak fry, the curly fry, etc. To limit the scope of our research we set our sights on the traditional, standard cut fry. The standard cut fry is evenly cut, medium-thin, and only fried once.
 
-What does a French fry look like at different fast food chains We measured weight, length, and both widths of fries from multiple fast food locations.
+We want to know how different American fast-food chains fries compare. Using properties like weight, width, length, height, and cost, we can get each brands mean fry. Then compare different companies mean fry to find the best value fry. While subjective, the best value fry has the lowest cost per fry density. In more simple terms, we are asking “Which American fast-food company gives the most fry per dollar?”
+
 
 ## Methodology and Data Collection
 
 
-Fries were  collected. These were the prices and weights:
+We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry. We measured each fry, as well as the sum of all the fries together for each fast-food restaurant. We also recorded the cost of the fries without tax. The weight and cost of each large fry can be seen below:
 
 - McDonald's Large Fries
   - 6.53oz
@@ -36,27 +37,31 @@ Fries were  collected. These were the prices and weights:
 
 - Carl's Jr. Large Fries
 	- 5.33oz
-	- $
+	- $2.99 (without tax)
+
 	
 	
-Weight was collected on a digital kitchen scale. Weights were collected in ounces and it was determined the scale is accurate to grams. The grams are converted in the scale to ounces.
+ Measuring each fry from the four companies gave us data from over 300 fries and over 1200 data points. Weight was collected on a digital kitchen scale. Weights were collected in ounces, and it was determined the scale is accurate to grams. The grams are converted in the scale to ounces. This is important because the raw data will show weird jumps. While measuring we noticed that the scale would sometimes show 4 or an 8. While weight could normally be a continuous variable, due to the scale limitations, weight will be treated as discrete measurements in terms of grams. 
 
-How we collected data
-
-The steps we will take to evaluate the data
+Evaluating the data will consist of visualizing each company’s measured large fry population values to find possible trends. Then we will get statistical data to evaluate what the average fry is for each company. This includes measured data like weight and calculated values like density or other meaningful statistical values.  Using the values of an average fry we will then use a confidence interval to see the bounds on our experiment and validate each average fry. Once this has been done for each company, we can then compare the average fry between companies. 
 
 ## Data Analysis
-All that fancy stats stuff
-
-If you want to get data from just one place do something like 
-
-`r justWendys <- subset(fries, Business== "Wendys")`
-
-
-
 ```{r, echo=FALSE}
+##All that fancy stats stuff
+##If you want to get data from just one place do something like 
+##`r 
+justWendys <- subset(fries, Business== "Wendys")
+justbk <- subset(fries, Business== "BurgerKing")
+justmcd <- subset(fries, Business== "McDonalds")
+justcarl <- subset(fries, Business== "CarlsJr")
+```
+To begin lets take a look at all of our measured results and compare them by company. We used the following code to generate then next 4 graphs. 
+
+
+
+```{r, echo=TRUE}
 ggplot(fries) +
-  geom_density(aes(x=Length, fill=Business), alpha=0.4) +
+  geom_density(aes(x=Length, fill=Business), alpha=0.5) +
   labs(
     title="Length of Fries",
     x="Length (mm)"
@@ -68,16 +73,48 @@ ggplot(fries) +
 ```{r, echo=FALSE, warning=FALSE}
 
 ggplot(fries) +
+  geom_density(aes(x=Height, fill=Business), alpha=0.5, adjust=1.9) +
+  labs(
+    title="Height of Fries",
+    x="height (mm)"
+  ) +
+  theme_gray()
+```
+```{r, echo=FALSE, warning=FALSE}
+
+ggplot(fries) +
+  geom_density(aes(x=Width, fill=Business), alpha=0.5, adjust=1.9) +
+  labs(
+    title="Width of Fries",
+    x="Width (mm)"
+  ) +
+  theme_gray()
+```
+
+```{r, echo=FALSE, warning=FALSE}
+
+ggplot(fries) +
   geom_density(aes(x=Grams, fill=Business), alpha=0.5, adjust=1.9) +
   labs(
     title="Weight of Fries",
-    x="Wight (grams)"
+    x="Weight (grams)"
   ) +
   theme_gray()
 
 #adjust 1.9 smoothes the discrete values into a normal looking graph.
 ```
 
+Looking at this data gives us a pretty good idea about the overall picture. First, almost all of the data looks somewhat normally distributed. This is good because it means that our random sample of buying a large fry had a pretty good distribution per company. Second, looking at height and width, McDonalds seems incredibly consistent at that 5mm mark. Third, burger king looks to have an average fry that is thicker, longer, taller, and heavier than any other fry. 
+
+Because Burger Kings fries are clearly winning in each of these categories, it seems intuitive to believe that BK has the best average fry. However, we are negating cost and amount. We would bet that burger king either charges more per fry and/or gives you less fries. Lets also take a look at the number of fries and the cost of the fries. 
+
+```{r, echo=FALSE, warning=FALSE}
+##Alex will continue this thought
+
+##AverageStats <- data.frame (Company  = c("McDonalds", "Wendy's", "Burger King", "Carl's Jr."),
+##                  FryCount = c(count(justbk", "value_2", ...)
+##                  )
+```
 
 
 ## Conclusions
