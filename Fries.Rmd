@@ -21,7 +21,17 @@ We want to know how different American fast-food chains fries compare. Using pro
 ## Methodology and Data Collection
 
 
-We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry. We measured each fry, as well as the sum of all the fries together for each fast-food restaurant. We also recorded the cost of the fries without tax. The weight and cost of each large fry can be seen below:
+We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry. Due to budgetary constraints a single order of large fries was procured from each location.
+
+Fries were collected during the last week of March 2022. A researcher would place the fry on a scale and read the weight visible on the scale. The scale is an Ozeri ZK14-S Pronto digital kitchen and food scale. The scale is accurrate from 0 to 5100 grams. The scale has a precision to 1 gram (0.04 oz). A second researcher would input the data into a .csv file.
+
+![Fry On Scale](20220324_190605.jpg)
+
+The researcher will then take the fry and measure it's length. The measurement device is a stainless steel millimeter/inch ruler that is 6 inches long. If the fry is curved the researcher would extend the fry until straight. The researcher would then measure the center of the fry by the height and width and state the two numbers. As before, a second researcher would input those values into the .csv file. A single fry was longer than the measuring tape. This specific fry was measured to the entire length then shifted to measure the remaining length. Each fry was placed directly on the measuring ruler then visually measured.
+
+![Fry Measured By Length](20220324_190637.jpg)
+
+The weight and cost of each large fry can be seen below:
 
 - McDonald's Large Fries
   - 6.53oz
@@ -33,15 +43,15 @@ We decided to compare 4 major American fast-food companies: McDonalds, Carl’s 
 
 - Burger King Large Fries
   - 6.42oz
-  - $3.29 (without tax)
+  - $3.55 (with tax)
 
 - Carl's Jr. Large Fries
 	- 5.33oz
-	- $2.99 (without tax)
+	- $3.22 (with tax)
 
 	
 	
- Measuring each fry from the four companies gave us data from over 300 fries and over 1200 data points. Weight was collected on a digital kitchen scale. Weights were collected in ounces, and it was determined the scale is accurate to grams. The grams are converted in the scale to ounces. This is important because the raw data will show weird jumps. While measuring we noticed that the scale would sometimes show 4 or an 8. While weight could normally be a continuous variable, due to the scale limitations, weight will be treated as discrete measurements in terms of grams. 
+Measuring each fry from the four companies provided data from over 300 fries and over 1200 data points. Weights were collected in ounces, the ounces were converted to grams due to the scale's accuracy. Due to measurement limitations the weights and dimensions are discrete variables though weight and length are in actuality continuous variables. While measuring the scale would occasionally oscillate between two weight values; example of 1 and 2 ounces. While weight could normally be a continuous variable, due to the scale limitations, weight will be treated as discrete measurements in terms of grams. 
 
 Evaluating the data will consist of visualizing each company’s measured large fry population values to find possible trends. Then we will get statistical data to evaluate what the average fry is for each company. This includes measured data like weight and calculated values like density or other meaningful statistical values.  Using the values of an average fry we will then use a confidence interval to see the bounds on our experiment and validate each average fry. Once this has been done for each company, we can then compare the average fry between companies. 
 
@@ -56,8 +66,6 @@ justmcd <- subset(fries, Business== "McDonalds")
 justcarl <- subset(fries, Business== "CarlsJr")
 ```
 To begin lets take a look at all of our measured results and compare them by company. We used the following code to generate then next 4 graphs. 
-
-
 
 ```{r, echo=TRUE}
 ggplot(fries) +
