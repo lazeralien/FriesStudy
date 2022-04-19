@@ -34,19 +34,19 @@ The researcher will then take the fry and measure it's length. The measurement d
 The weight and cost of each large fry can be seen below:
 
 - McDonald's Large Fries
-  - 6.53oz
+  - 6.53oz/185g
   - $3.68 (with tax)
 	
 - Wendy's Large Fries
-  - 6.35oz
+  - 6.35oz/180g
   - $3.13 (with tax)
 
 - Burger King Large Fries
-  - 6.42oz
+  - 6.42oz/182g
   - $3.55 (with tax)
 
 - Carl's Jr. Large Fries
-	- 5.33oz
+	- 5.33oz/151
 	- $3.22 (with tax)
 
 	
@@ -65,6 +65,40 @@ justbk <- subset(fries, Business== "BurgerKing")
 justmcd <- subset(fries, Business== "McDonalds")
 justcarl <- subset(fries, Business== "CarlsJr")
 ```
+
+
+**Weight Accuracy**
+
+The combined weight of the collective fries was different than the weight of all fries combined. 
+
+```{r, echo = FALSE}
+WWeight <- sum(justWendys$Grams)
+BWeight <- sum(justbk$Grams)
+MWeight <- sum(justmcd$Grams)
+CWeight <- sum(justcarl$Grams)
+
+weightsSum <- (matrix(c("Location", "Combined Weight", "Individual Sums", 
+                        "Wendy's", 180, WWeight, 
+                        "Burger King", 182, BWeight, 
+                        "McDonalds", 185, MWeight, 
+                        "Carl's Jr", 151, CWeight)
+                      ,3))
+weightSumMatrix <- (matrix(c(180,  182, 185, 151, WWeight, BWeight,  MWeight,  CWeight), 4))
+
+deviationWeights <- (abs(180 - WWeight) + abs(182 - BWeight) + abs(185 - MWeight) + abs(151 - CWeight))/4
+
+echo = TRUE
+
+knitr::kable(weightsSum, caption = "Combined Weight vs. Individual Weights Summed")
+
+
+```
+
+Combining all values results in a standard deviation of `r deviationWeights` grams among all the fries. This indicates a standard deviation of  a standard deviation, or error of `r (deviationWeights)/nrow(fries)` grams per fry. For the remainder of the data collected we will analyze the data assuming no weight measurement error.
+
+
+**Graphs**
+
 To begin lets take a look at all of our measured results and compare them by company. We used the following code to generate then next 4 graphs. 
 
 ```{r, echo=TRUE}
