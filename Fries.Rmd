@@ -57,6 +57,9 @@ Evaluating the data will consist of visualizing each company’s measured large 
 
 ## Data Analysis
 ```{r, echo=FALSE}
+##start with adding density so all subsets have density
+fries$Density = fries$Grams /(fries$Length * fries$Width * fries$Height)
+
 ##All that fancy stats stuff
 ##If you want to get data from just one place do something like 
 ##`r 
@@ -146,6 +149,19 @@ ggplot(fries) +
 #adjust 1.9 smoothes the discrete values into a normal looking graph.
 ```
 
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+
+ggplot(fries) +
+  geom_density(aes(x=Density, fill=Business), alpha=0.5, adjust=1.9) +
+  labs(
+    title="Fry Density (V/M)",
+    x="Fry Density (g/mm^2)"
+  ) +
+  theme_gray()
+
+#adjust 1.9 smoothes the discrete values into a normal looking graph.
+```
+
 Looking at this data gives us a pretty good idea about the overall picture. First, almost all of the data looks somewhat normally distributed. This is good because it means that our random sample of buying a large fry had a pretty good distribution per company. Second, looking at height and width, McDonalds seems incredibly consistent at that 5mm mark. Third, burger king looks to have an average fry that is thicker, longer, taller, and heavier than any other fry. 
 
 Because Burger Kings fries are clearly winning in each of these categories, it seems intuitive to believe that BK has the best average fry. However, we are negating cost and amount. We would bet that burger king either charges more per fry and/or gives you less fries. Lets also take a look at the number of fries and the cost of the fries. 
@@ -153,10 +169,22 @@ Because Burger Kings fries are clearly winning in each of these categories, it s
 ```{r, echo=FALSE, warning=FALSE}
 ##Alex will continue this thought
 
-##AverageStats <- data.frame (Company  = c("McDonalds", "Wendy's", "Burger King", "Carl's Jr."),
-##                  FryCount = c(count(justbk", "value_2", ...)
-##                  )
+AverageStats <- data.frame (Company  = c("McDonalds", "Wendy's", "Burger King", "Carl's Jr."),
+                            FryCount = c(95,93,48,82),
+                            TotalCost     = c(3.68,3.13,3.55,3.22)
+                           )
+
+AverageStats$CostPerFry <- AverageStats$TotalCost/AverageStats$FryCount
+knitr::kable(AverageStats, caption = "Fry Count, Cost, and Price per Fry")
 ```
+
+It looks like burger king charges about 87% more than the next highest costing fry. The other 3 companies are closely inline. Keeping these values in mind will be important in the end when comparing each companies fries. 
+
+Lets start by taking a look at burger king. 
+
+
+
+
 
 
 ## Conclusions
