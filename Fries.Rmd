@@ -1,6 +1,6 @@
 ---
-title: "Fries"
-author: "Brandon, Casey and Alex"
+title: "An Analysis of French Fries at Popular Fast Food Locations"
+author: "William Brandon Babcock, Casey Duncan, and Alex"
 date: '2022-04-01'
 output: html_document
 ---
@@ -21,10 +21,15 @@ We want to know how different American fast-food chains fries compare. Using pro
 ## Methodology and Data Collection
 
 
-We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry. Due to budgetary constraints a single order of large fries was procured from each location.
+We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry.  The population we are studying is the "average fry" from each of these restaurants in the Millcreek, UT area (NOT the "average french fry order").Due to budgetary constraints, a single order of large fries was procured from each location. While it would have been nice to discuss "which Restaurant has the best order order of fries?", this would have required a very large time and money investment to get a good sample.
 
-Fries were collected during the last week of March 2022. A researcher would place the fry on a scale and read the weight visible on the scale. The scale is an Ozeri ZK14-S Pronto digital kitchen and food scale. The scale is accurrate from 0 to 5100 grams. The scale has a precision to 1 gram (0.04 oz). A second researcher would input the data into a .csv file.
+Unfortunately, our sample is a "convenience sample". Our team discussed what it would take to do a "simple random sample" of french fries from these restaurants, and it just didn't seem feasible from a cost or time perspective. We spent around $15 on fries, and it took us around 4 hours to measure and gather our data. Getting a good "simple random sample" would easily require 10 times the money and time. This revealed to us that getting a good sample of data is difficult.
 
+We encountered two issues when measuring the fries; the first we will call "crumb corruption". In order to measure the fries, we had to handle them. In doing so, small bits of crumbs would occasionally fall off of the french fry. This may have a slight impact on the weight of each fry. This is hardly unique to our study, as most measuring devices must affect the thing they are measuring to get a reading. For example, a voltmeter must affect the circuit it is hooked up to in order to get a measurement.
+
+The second issue is what we call "crumb arbitrariness". We tried to measure each fry, no matter how small. However, we did not measure what we deemed as"crumbs". But isn't a crumb just a small french fry? This was a judgement call that we made when measuring the data, but we didn't have a concrete rule for what is considered a "fry" or a "crumb".
+
+Fries were collected during the last week of March 2022. A researcher would place the fry on a scale and read the weight visible on the scale. The scale is an Ozeri ZK14-S Pronto digital kitchen and food scale. The scale is accurate from 0 to 5100 grams. The scale has a precision to 1 gram (0.04 oz). A second researcher would input the data into a .csv file.
 ![Fry On Scale](20220324_190605.jpg)
 
 The researcher will then take the fry and measure it's length. The measurement device is a stainless steel millimeter/inch ruler that is 6 inches long. If the fry is curved the researcher would extend the fry until straight. The researcher would then measure the center of the fry by the height and width and state the two numbers. As before, a second researcher would input those values into the .csv file. A single fry was longer than the measuring tape. This specific fry was measured to the entire length then shifted to measure the remaining length. Each fry was placed directly on the measuring ruler then visually measured.
@@ -53,7 +58,10 @@ The weight and cost of each large fry can be seen below:
 	
 Measuring each fry from the four companies provided data from over 300 fries and over 1200 data points. Weights were collected in ounces, the ounces were converted to grams due to the scale's accuracy. Due to measurement limitations the weights and dimensions are discrete variables though weight and length are in actuality continuous variables. While measuring the scale would occasionally oscillate between two weight values; example of 1 and 2 ounces. While weight could normally be a continuous variable, due to the scale limitations, weight will be treated as discrete measurements in terms of grams. 
 
-Evaluating the data will consist of visualizing each company’s measured large fry population values to find possible trends. Then we will get statistical data to evaluate what the average fry is for each company. This includes measured data like weight and calculated values like density or other meaningful statistical values.  Using the values of an average fry we will then use a confidence interval to see the bounds on our experiment and validate each average fry. Once this has been done for each company, we can then compare the average fry between companies. 
+Evaluating the data will consist of visualizing each company’s measured large fry population values to find possible trends. Then we will get statistical data to evaluate what the average fry is for each company. This includes measured data like weight and calculated values like density or other meaningful statistical values.  Using the values of an average fry we will then use a confidence interval to see the bounds on our experiment and validate each average fry. Once this has been done for each company, we can then compare the average fry between companies. Assuming the data the we collected is somewhat normally distributed, we will use a t test with a 95% confidence interval to compare the restaurant's fries.
+
+## Study Limitations
+
 
 ## Data Analysis
 ```{r, echo=FALSE}
@@ -112,20 +120,21 @@ ggplot(fries) +
     x="Length (mm)"
   ) +
   theme_gray()
-
+t.test(justbk$Length,justmcd$Length,conf.level=0.95)
 ```
 
-```{r, echo=FALSE, warning=FALSE}
+```{r,include=FALSE, echo=FALSE, warning=FALSE}
 
 ggplot(fries) +
   geom_density(aes(x=Height, fill=Business), alpha=0.5, adjust=1.9) +
   labs(
     title="Height of Fries",
-    x="height (mm)"
+    x="Height (mm)"
   ) +
   theme_gray()
 ```
-```{r, echo=FALSE, warning=FALSE}
+
+```{r,include=FALSE, echo=FALSE, warning=FALSE}
 
 ggplot(fries) +
   geom_density(aes(x=Width, fill=Business), alpha=0.5, adjust=1.9) +
@@ -141,26 +150,40 @@ ggplot(fries) +
 ggplot(fries) +
   geom_density(aes(x=Grams, fill=Business), alpha=0.5, adjust=1.9) +
   labs(
-    title="Weight of Fries",
-    x="Weight (grams)"
+    title="Mass of Fries",
+    x="Mass (grams)"
   ) +
   theme_gray()
 
 #adjust 1.9 smoothes the discrete values into a normal looking graph.
+t.test(justbk$Grams,justmcd$Grams,conf.level=0.95)
 ```
 
-```{r, include=FALSE, echo=FALSE, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE}
+ggplot(fries) +
+  geom_density(aes(x=Length*Width*Height, fill=Business), alpha=0.5, adjust=1.9) +
+  labs(
+    title="Volume of Fries",
+    x="Volume (mm^3)"
+  ) +
+  theme_gray()
+t.test(justbk$Length*justbk$Width*justbk$Height,justWendys$Length*justWendys$Width*justWendys$Height,conf.level=0.95)
+```
+
+```{r, echo=FALSE, warning=FALSE}
 
 ggplot(fries) +
   geom_density(aes(x=Density, fill=Business), alpha=0.5, adjust=1.9) +
   labs(
-    title="Fry Density (V/M)",
-    x="Fry Density (g/mm^2)"
+    title="Density of Fries (M/V)",
+    x="Density (g/mm^3)"
   ) +
   theme_gray()
 
 #adjust 1.9 smoothes the discrete values into a normal looking graph.
+t.test(justbk$Density,justmcd$Density,conf.level=0.95)
 ```
+
 
 Looking at this data gives us a pretty good idea about the overall picture. First, almost all of the data looks somewhat normally distributed. This is good because it means that our random sample of buying a large fry had a pretty good distribution per company. Second, looking at height and width, McDonalds seems incredibly consistent at that 5mm mark. Third, burger king looks to have an average fry that is thicker, longer, taller, and heavier than any other fry. 
 
