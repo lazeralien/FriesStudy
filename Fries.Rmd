@@ -21,7 +21,7 @@ We want to know how different American fast-food chains fries compare. Using pro
 ## Methodology and Data Collection
 
 
-We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry.  The population we are studying is the "average fry" from each of these restaurants in the Millcreek, UT area (NOT the "average french fry order").Due to budgetary constraints, a single order of large fries was procured from each location. While it would have been nice to discuss "which Restaurant has the best order order of fries?", this would have required a very large time and money investment to get a good sample.
+We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry.  The population we are studying is the "average fry" from each of these restaurants in the Millcreek, UT area (NOT the "average french fry order").Due to budgetary constraints, a single order of large fries was procured from each location. While it would have been nice to discuss "which Restaurant has the best order of fries?", this would have required a very large time and money investment to get a good sample.
 
 Unfortunately, our sample is a "convenience sample". Our team discussed what it would take to do a "simple random sample" of french fries from these restaurants, and it just didn't seem feasible from a cost or time perspective. We spent around $15 on fries, and it took us around 4 hours to measure and gather our data. Getting a good "simple random sample" would easily require 10 times the money and time. This revealed to us that getting a good sample of data is difficult.
 
@@ -74,24 +74,12 @@ justmcd <- subset(fries, Business== "McDonalds")
 justcarl <- subset(fries, Business== "CarlsJr")
 ```
 
-
+In data analysis we will provide averages, volume, dimensions, weight accuracy and mass calculations.
 
 
 **Average Fry Statistics**
 
 We composed the following two tables. The first one shows the overall statistics of the large fry order. These are not great referernce points because we only got one large from each company. However, we can get some of the picture from the first table. The second table is more interesting because it shows the average fry from each company and will be the basis of most of our analysis. 
-
-```{r, echo=FALSE, warning=FALSE}
-
-AverageStats <- data.frame (Company  = c("McDonalds", "Wendy's", "Burger King", "Carl's Jr."),
-                            FryCount = c(95,93,48,82),
-                            TotalCost     = c(3.68,3.13,3.55,3.22)
-                           )
-
-AverageStats$CostPerFry <- AverageStats$TotalCost/AverageStats$FryCount
-knitr::kable(AverageStats, caption = "Large Fries: Fry Count, Cost, and Price per Fry")
-```
-
 
 ```{r, echo=FALSE, warning=FALSE}
 
@@ -102,15 +90,36 @@ avgfrystats <- data.frame(Company  = c("McDonalds", "Wendy's", "Burger King", "C
                             Width = c(mean(justmcd$Width),mean(justWendys$Width),mean(justbk$Width),mean(justcarl$Width)),
                             Density = c(mean(justmcd$Density),mean(justWendys$Density),mean(justbk$Density),mean(justcarl$Density))
                            )
-knitr::kable(avgfrystats, caption = "The Average Fry from each Company")
+knitr::kable(avgfrystats, caption = "The Average Fry Dimensions")
 
 ```
+
+
+```{r, echo=FALSE, warning=FALSE}
+
+AverageStats <- data.frame (Company  = c("McDonalds", "Wendy's", "Burger King", "Carl's Jr."),
+                            FryCount = c(95,93,48,82),
+                            CostPerFry = (c(3.68, 3.13, 3.55, 3.22)),
+                            CostPerGram   = c(3.68/185,3.13/180,3.55/182,3.22/151)
+                           )
+
+AverageStats$CostPerFry <- AverageStats$CostPerFry/AverageStats$FryCount
+knitr::kable(AverageStats, caption = "Large Fries: Fry Count, Cost, Price Per Gram, and Price per Fry")
+```
+
+
+
 
 These values are the average measured results, as well as a calculation for density. However, there is a flaw that likely comes into account from the way we collected the data. We assumed Height and width should be approximately the same because each fry should be a square. This is true for all values except Wendy’s. Wendys has about a millimeter and a half of difference between the height and the width of the fry. If we were doing this study again, it would make sense to make height the larger dimension to avoid this issue again of a non-square fry. 
 
 Looking at the stats above shows that all the fries are fairly similar accept Burger King. Burger king has fries over two times the weight, and over 10 mm longer. They also appear to be thicker. However, they are less dense than McDonalds. Wendys appears to have the least dense fries, with Carls Jr. coming in third. Wendy’s fries are just over half as dense as McDonalds. 
 
 Nevertheless, the value we care most about is density. Density should not be affected by the width and height components, because they are both treated as equals. We believe that density is better because it balances the size and weight of each fry. It allows us to look at a comparison of the fries that are long and skinny as equally as the fries that are thick and short. To get a good picture of density, we will first evaluate volume, then mass. 
+
+See below for the average dimensions of fries between the companies. 
+
+![Average Fry Dimensions (millimeters)](AvgFriesDimensions.png)
+
 
 
 **Volume**
@@ -193,7 +202,7 @@ knitr::kable(weightsSum, caption = "Combined Weight vs. Individual Weights Summe
 ```
 
 The combined weight of the collective fries was different than the weight of all fries combined. 
-Combining all values results in a standard deviation of `r deviationWeights` grams among all the fries. This indicates a standard deviation of  a standard deviation, or error of `r (deviationWeights)/nrow(fries)` grams per fry. While we believe the singular measured weight of all of the fries to be the most accurate, it doesn't allow us to get per fry statistics. We believe the error to be fairly large and means we would need to collect more samples for any values that contain weight. For the remainder of the data collected we will analyze the data assuming no weight measurement error.
+Combining all values results in a standard deviation of `r deviationWeights` grams among all the fries. This indicates a standard deviation, or error of `r (deviationWeights)/nrow(fries)` grams per fry. While we believe the singular measured weight of all of the fries to be the most accurate, it doesn't allow us to get per fry statistics. We believe the error to be fairly large and means we would need to collect more samples for any values that contain weight. For the remainder of the data collected we will analyze the data assuming no weight measurement error.
 
 
 We graphed the weight in a similar format as above:
@@ -232,6 +241,26 @@ t.test(justbk$Density,justmcd$Density,conf.level=0.95)
 
 We have finally arrived to density. This graph is different from all the others because it puts mass in relation volume. Looking at the above graph shows that McDonalds has a denser fry on average. Burger king has the most consistent density in fry at second place. Wendy’s also has a fairly consistent fry. Carl’s Jr. has less consistency, but typically the same average density as the other fries. 
 
+
+Performing a one-way analysis of means, we check to see if we have 95% confidence that the grams between the fries is normally distributed between the fries.
+```{r, echo = FALSE}
+oneway.test(Grams ~ Business,
+            data = fries,
+            var.equal = TRUE)
+
+```
+
+As p-value is well below 0.05 we reject the hypothesis that the grams are similar. This is interpreted to mean that grams vary between businesses.
+
 ## Study Limitations
 
+As previously discussed, multiple limitations exist in this study. Limitations and recommendations for future studies are provided below.
+
+ - Weight measurement: The kitchen scale used provided 1 gram accuracy. A measuring scale accurate to 0.1 gram would have provided improved information.
+ - Dimension measurements: Dimensions were measured using a simple ruler and by eye. These were as accurate as researcher's vision allows. Though this provided millimeter accuracy, human requirements likely reduced accuracy. Future studies could use separate researchers measuring the same fry or electronic measurement tools.
+ - Convenience Sample: The sample collected was a convenience sample. This leads the information of the average fry at a location and could be affected by a single employee. To improve accuracy in future studies, random times at multiple locations would provide samples that could be attributed to more universally.
+ - Sample Size: The sample size was relatively small. Similar to convenience sample, a larger collection of fries over a longer period of time would provide a more universal and confident answer.
+
 ## Conclusions
+
+
