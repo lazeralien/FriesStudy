@@ -252,6 +252,18 @@ oneway.test(Grams ~ Business,
 
 As p-value is well below 0.05 we reject the hypothesis that the grams are similar. This is interpreted to mean that grams vary between businesses.
 
+
+Another question using a one-way analysis of means is the density. Do the densities appear to be from a similar population?
+
+```{r, echo = FALSE}
+oneway.test(Density ~ Business,
+            data = fries,
+            var.equal = TRUE)
+
+```
+
+It is noted that the F value is 36. This means that the variance between businesses is less on density than it is on mass.
+
 ## Study Limitations
 
 As previously discussed, multiple limitations exist in this study. Limitations and recommendations for future studies are provided below.
@@ -263,4 +275,4 @@ As previously discussed, multiple limitations exist in this study. Limitations a
 
 ## Conclusions
 
-
+The fries have a more consistent density than mass
