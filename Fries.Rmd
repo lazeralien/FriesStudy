@@ -275,4 +275,11 @@ As previously discussed, multiple limitations exist in this study. Limitations a
 
 ## Conclusions
 
-The fries have a more consistent density than mass
+Multiple fries were compared among Burger King, McDonald's, Wendy's and Carl's Jr. Below are distinguishing properties between the businesses.
+
+ - Wendy's has the lowest priced fries by weight, Carl's Jr. is the most expensive
+ - Burger King has the largest fries in all dimensions including mass, Wendy's has the shortest fries.
+ - McDonald's has the most consistent dimensions of fries
+ - McDonald's has the highest density of fries
+
+After performing a test of variance it was determined that the businesses have less variance in density than mass. We surmise that the density, though different, is more similar because fries are using potatoes. The interesting thing to note three businesses are siilar in density and McDonalds has a more dense fry. While this is conjecture, it could be a different potato or process that would distinguish McDonalds from the other companies.
