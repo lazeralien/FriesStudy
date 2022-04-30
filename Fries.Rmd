@@ -15,19 +15,15 @@ fries <- read.csv("fries.csv")
 
 Originating in Belgium or France in the late 1600’s, the french-fry has been around longer than the United States. While the origination is disputed, our research team is interested in the modern-day french-fry. The french-fry’s long history has created the opportunity for a large number of variants: The waffle fry, the steak fry, the curly fry, etc. To limit the scope of our research we set our sights on the traditional, standard cut fry. The standard cut fry is evenly cut, medium-thin, and only fried once.
 
-We want to know how different American fast-food chains fries compare. Using properties like weight, width, length, height, and cost, we can get each brands mean fry. Then compare different companies mean fry to find the best value fry. While subjective, the best value fry has the lowest cost per fry density. In more simple terms, we are asking “Which American fast-food company gives the most fry per dollar?”
+We want to know how different American fast-food chain's fries compare. Using properties like weight, width, length, height, and cost, we can find the mean fry of each brand. Then we can compare different companies mean fry to find the best value fry. While subjective, the best value fry has the lowest cost per fry density. In more simple terms, we are asking “Which American fast-food company gives the most fry per dollar?”
 
 
 ## Methodology and Data Collection
 
 
-We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry.  The population we are studying is the "average fry" from each of these restaurants in the Millcreek, UT area (NOT the "average french fry order").Due to budgetary constraints, a single order of large fries was procured from each location. While it would have been nice to discuss "which Restaurant has the best order of fries?", this would have required a very large time and money investment to get a good sample.
+We decided to compare 4 major American fast-food companies: McDonalds, Carl’s Jr., Burger King, and Wendy’s. Our process involved ordering a large fry then measuring the weight, length, width, and height of each fry.  The population we are studying is the "average fry" from each of these restaurants in the Millcreek, UT area (NOT the "average french fry order").Due to budgetary constraints, a single order of large fries was procured from each location. While it would have been nice to discuss "which restaurant has the best order of fries?", this would have required a very large time and money investment to get a good sample.
 
 Unfortunately, our sample is a "convenience sample". Our team discussed what it would take to do a "simple random sample" of french fries from these restaurants, and it just didn't seem feasible from a cost or time perspective. We spent around $15 on fries, and it took us around 4 hours to measure and gather our data. Getting a good "simple random sample" would easily require 10 times the money and time. This revealed to us that getting a good sample of data is difficult.
-
-We encountered two issues when measuring the fries; the first we will call "crumb corruption". In order to measure the fries, we had to handle them. In doing so, small bits of crumbs would occasionally fall off of the french fry. This may have a slight impact on the weight of each fry. This is hardly unique to our study, as most measuring devices must affect the thing they are measuring to get a reading. For example, a voltmeter must affect the circuit it is hooked up to in order to get a measurement.
-
-The second issue is what we call "crumb arbitrariness". We tried to measure each fry, no matter how small. However, we did not measure what we deemed as"crumbs". But isn't a crumb just a small french fry? This was a judgement call that we made when measuring the data, but we didn't have a concrete rule for what is considered a "fry" or a "crumb".
 
 Fries were collected during the last week of March 2022. A researcher would place the fry on a scale and read the weight visible on the scale. The scale is an Ozeri ZK14-S Pronto digital kitchen and food scale. The scale is accurate from 0 to 5100 grams. The scale has a precision to 1 gram (0.04 oz). A second researcher would input the data into a .csv file.
 ![Fry On Scale](20220324_190605.jpg)
@@ -56,9 +52,9 @@ The weight and cost of each large fry can be seen below:
 
 	
 	
-Measuring each fry from the four companies provided data from over 300 fries and over 1200 data points. Weights were collected in ounces, the ounces were converted to grams due to the scale's accuracy. Due to measurement limitations the weights and dimensions are discrete variables though weight and length are in actuality continuous variables. While measuring the scale would occasionally oscillate between two weight values; example of 1 and 2 ounces. While weight could normally be a continuous variable, due to the scale limitations, weight will be treated as discrete measurements in terms of grams. 
+Measuring each fry from the four companies provided data from over 300 fries with over 1200 data points. Weights were collected in ounces, the ounces were converted to grams due to the scale's accuracy. While weight and dimension are continuous variables, we obtained discrete data due to limitations in our measurement instruments. While measuring, the scale would occasionally oscillate between two weight values; for example, 1 or 2 ounces. Because the accuracy of the scale was low, the weight data has discrete qualities.
 
-Evaluating the data will consist of visualizing each company’s measured large fry population values to find possible trends. Then we will get statistical data to evaluate what the average fry is for each company. This includes measured data like weight and calculated values like density or other meaningful statistical values.  Using the values of an average fry we will then use a confidence interval to see the bounds on our experiment and validate each average fry. Once this has been done for each company, we can then compare the average fry between companies. Assuming the data the we collected is somewhat normally distributed, we will use a t test with a 95% confidence interval to compare the restaurant's fries.
+Evaluating the data will consist of visualizing each company’s measured large fry population values to find possible trends. Then we will get statistical data to evaluate what the average fry is for each company. This includes measured data like weight and calculated values like density and volume. Assuming the data that we collected is somewhat normally distributed, we will use a t-test with a 95% confidence interval to compare the restaurant's fries.
 
 ## Data Analysis
 ```{r, echo=FALSE}
@@ -79,7 +75,7 @@ In data analysis we will provide averages, volume, dimensions, weight accuracy a
 
 **Average Fry Statistics**
 
-We composed the following two tables. The first one shows the overall statistics of the large fry order. These are not great referernce points because we only got one large from each company. However, we can get some of the picture from the first table. The second table is more interesting because it shows the average fry from each company and will be the basis of most of our analysis. 
+We composed the following two tables. The first one shows the overall statistics of the large fry order. These are not great reference points because we only obtained one large from each company. However, we can get some of the picture from the first table. The second table is more interesting because it shows the average fry from each company and will be the basis of most of our analysis. 
 
 ```{r, echo=FALSE, warning=FALSE}
 
@@ -110,9 +106,9 @@ knitr::kable(AverageStats, caption = "Large Fries: Fry Count, Cost, Price Per Gr
 
 
 
-These values are the average measured results, as well as a calculation for density. However, there is a flaw that likely comes into account from the way we collected the data. We assumed Height and width should be approximately the same because each fry should be a square. This is true for all values except Wendy’s. Wendys has about a millimeter and a half of difference between the height and the width of the fry. If we were doing this study again, it would make sense to make height the larger dimension to avoid this issue again of a non-square fry. 
+These values are the average measured results, as well as a calculation for density. However, there is a flaw from the way we collected the data. We measured width and height interchangeably since the base of each fry is approximately a square. Because of this, all restaurants have similar width and height averages except Wendy’s. Wendy's has about a millimeter and a half of difference between the height and the width of the fry. If we were to repeat this study, we would make height the larger dimension to avoid this issue again of a non-square fry. 
 
-Looking at the stats above shows that all the fries are fairly similar accept Burger King. Burger king has fries over two times the weight, and over 10 mm longer. They also appear to be thicker. However, they are less dense than McDonalds. Wendys appears to have the least dense fries, with Carls Jr. coming in third. Wendy’s fries are just over half as dense as McDonalds. 
+Looking at the statistics above shows that all of the fries are fairly similar except Burger King. Burger King has fries over two times the weight, over 10 mm longer, and thicker than other restaurants. However, they are less dense than McDonalds. Wendys appears to have the least dense fries, with Carls Jr. coming in third. Wendy’s fries are just over half as dense as McDonalds. 
 
 Nevertheless, the value we care most about is density. Density should not be affected by the width and height components, because they are both treated as equals. We believe that density is better because it balances the size and weight of each fry. It allows us to look at a comparison of the fries that are long and skinny as equally as the fries that are thick and short. To get a good picture of density, we will first evaluate volume, then mass. 
 
@@ -134,7 +130,6 @@ ggplot(fries) +
     x="Length (mm)"
   ) +
   theme_gray()
-##t.test(justbk$Length,justmcd$Length,conf.level=0.95)
 ```
 
 ```{r, echo=FALSE, warning=FALSE}
@@ -170,7 +165,7 @@ ggplot(fries) +
 ##t.test(justbk$Length*justbk$Width*justbk$Height,justWendys$Length*justWendys$Width*justWendys$Height,conf.level=0.95)
 ```
 
-Immediately, when looking at these four graphs, you can see how accurate McDonalds slices their fries. Both the height and the width of nearly every fry is 5mm. McDonalds definitely has the most consistency when it comes to the way the cut their fries.   Looking at all four graphs and the statistics from earlier, it is clear that burger king has a different fry then the other brands. Burger king has longer and thicker fries then the other companies. 
+Immediately, when looking at these four graphs, you can see how accurate McDonalds slices their fries. Both the height and the width of nearly every fry is 5mm. McDonalds definitely has the most consistency when it comes to the way the cut their fries. Looking at all four graphs and the statistics from earlier, it is clear that Burger King has a different fry then the other brands. Burger king has longer and thicker fries then the other companies. 
 
 **Weight and Accuracy**
 
@@ -202,7 +197,7 @@ knitr::kable(weightsSum, caption = "Combined Weight vs. Individual Weights Summe
 ```
 
 The combined weight of the collective fries was different than the weight of all fries combined. 
-Combining all values results in a standard deviation of `r deviationWeights` grams among all the fries. This indicates a standard deviation, or error of `r (deviationWeights)/nrow(fries)` grams per fry. While we believe the singular measured weight of all of the fries to be the most accurate, it doesn't allow us to get per fry statistics. We believe the error to be fairly large and means we would need to collect more samples for any values that contain weight. For the remainder of the data collected we will analyze the data assuming no weight measurement error.
+Combining all values results in a standard deviation of `r deviationWeights` grams among all the fries. This indicates a standard deviation, or error of `r (deviationWeights)/nrow(fries)` grams per fry. While we believe the singular measured weight of all of the fries to be the most accurate, our low sample size of "fry orders" prevents us from calculating a per-fry value. The error is fairly large because of the inaccuracy of our scale in measuring low-weight values. For the remainder of the data collected we will analyze the data assuming no weight measurement error.
 
 
 We graphed the weight in a similar format as above:
@@ -211,8 +206,8 @@ We graphed the weight in a similar format as above:
 ggplot(fries) +
   geom_density(aes(x=Grams, fill=Business), alpha=0.5, adjust=1.9) +
   labs(
-    title="Mass of Fries",
-    x="Mass (grams)"
+    title="Weight of Fries",
+    x="Weight (grams)"
   ) +
   theme_gray()
 
@@ -220,7 +215,7 @@ ggplot(fries) +
 t.test(justbk$Grams,justmcd$Grams,conf.level=0.95)
 ```
 
-This picture is roughly the same. Burger King, as a very normal distribution with heavier, but fewer fries. McDonalds seems to have more fries of a higher mass than Wendy’s or Carls Jr. However, these three seem to have very similar masses. Looking at density will hopefully negate the gap in approach between Burger King and the other three brands. 
+This picture is roughly the same. Burger King has a very normal distribution with heavier, but fewer fries. McDonalds seems to have more fries of a higher weight than Wendy’s or Carls Jr. However, these three seem to have very similar weights. Looking at density will hopefully negate the gap in approach between Burger King and the other three brands. 
 
 **Density**
 
@@ -262,7 +257,7 @@ oneway.test(Density ~ Business,
 
 ```
 
-It is noted that the F value is 36. This means that the variance between businesses is less on density than it is on mass.
+Note that he F value is 36. This means that the variance between businesses is less for density than mass. The p-value is once again far below 0.05. This is a very interesting result, as it seems to indicate that the restaurants use different kinds of potatoes with different densities. We expected that the average density between the restaurants would be very similar, since all fries are made with potatoes. 
 
 ## Study Limitations
 
@@ -270,9 +265,12 @@ As previously discussed, multiple limitations exist in this study. Limitations a
 
  - Weight measurement: The kitchen scale used provided 1 gram accuracy. A measuring scale accurate to 0.1 gram would have provided improved information.
  - Dimension measurements: Dimensions were measured using a simple ruler and by eye. These were as accurate as researcher's vision allows. Though this provided millimeter accuracy, human requirements likely reduced accuracy. Future studies could use separate researchers measuring the same fry or electronic measurement tools.
+ - Volume Approximation: Each fry's volume was approximated as a rectangular cuboid (length*width*height). In reality, each fry has a unique shape. This means that we overestimated the volume and underestimated the density for each fry.
  - Convenience Sample: The sample collected was a convenience sample. This leads the information of the average fry at a location and could be affected by a single employee. To improve accuracy in future studies, random times at multiple locations would provide samples that could be attributed to more universally.
  - Sample Size: The sample size was relatively small. Similar to convenience sample, a larger collection of fries over a longer period of time would provide a more universal and confident answer.
-
+ - Crumb Corruption: In order to measure the fries, we had to handle them. In doing so, small bits of crumbs would occasionally fall off of the french fry. This may have a slight impact on the weight of each fry. This is hardly unique to our study, as most measuring devices must affect the thing they are measuring to get a reading. For example, a voltmeter must affect the circuit it is hooked up to in order to get a measurement.
+ - Crumb Arbitrariness: We tried to measure each fry, no matter how small. However, we did not measure what we deemed as"crumbs". But isn't a crumb just a small french fry? This was a judgement call that we made when measuring the data, but we didn't have a concrete rule for what is considered a "fry" or a "crumb".
+ 
 ## Conclusions
 
 Multiple fries were compared among Burger King, McDonald's, Wendy's and Carl's Jr. Below are distinguishing properties between the businesses.
@@ -282,4 +280,4 @@ Multiple fries were compared among Burger King, McDonald's, Wendy's and Carl's J
  - McDonald's has the most consistent dimensions of fries
  - McDonald's has the highest density of fries
 
-After performing a test of variance it was determined that the businesses have less variance in density than mass. We surmise that the density, though different, is more similar because fries are using potatoes. The interesting thing to note three businesses are siilar in density and McDonalds has a more dense fry. While this is conjecture, it could be a different potato or process that would distinguish McDonalds from the other companies.
+After performing a test of variance it was determined that the businesses have less variance in density than mass. We surmise that the density, though different, is more similar because fries are using potatoes. The interesting thing to note is that three businesses are similar in density and McDonalds has a more dense fry. While this is conjecture, it could be a different potato or process that would distinguish McDonalds from the other companies. 
